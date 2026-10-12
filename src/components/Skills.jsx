@@ -7,23 +7,21 @@ import {
   Cloud,
   GitBranch,
   Boxes,
-  Sparkles,
 } from "lucide-react";
-
 const skillCategories = [
   {
     title: "Languages",
-    icon: <Coffee size={28} />,
+    icon: Coffee,
     skills: ["Java", "JavaScript", "SQL", "Python"],
   },
   {
     title: "Frontend",
-    icon: <Globe size={28} />,
+    icon: Globe,
     skills: ["React.js", "HTML5", "CSS3", "Tailwind CSS", "Bootstrap"],
   },
   {
     title: "Backend",
-    icon: <Server size={28} />,
+    icon: Server,
     skills: [
       "Spring Boot",
       "Spring MVC",
@@ -32,17 +30,16 @@ const skillCategories = [
       "REST APIs",
       "JWT",
       "Microservices",
-      "Apache Kafka",
     ],
   },
   {
     title: "Database",
-    icon: <Database size={28} />,
+    icon: Database,
     skills: ["MySQL", "PostgreSQL", "MongoDB", "Redis"],
   },
   {
     title: "Cloud & DevOps",
-    icon: <Cloud size={28} />,
+    icon: Cloud,
     skills: [
       "AWS",
       "Docker",
@@ -55,12 +52,12 @@ const skillCategories = [
   },
   {
     title: "Tools",
-    icon: <GitBranch size={28} />,
+    icon: GitBranch,
     skills: ["Git", "GitHub", "VS Code", "IntelliJ IDEA", "Postman", "Maven"],
   },
   {
     title: "AI & APIs",
-    icon: <Boxes size={28} />,
+    icon: Boxes,
     skills: [
       "OpenAI API",
       "Gemini API",
@@ -71,69 +68,59 @@ const skillCategories = [
   },
   {
     title: "Core CS",
-    icon: <FileCode2 size={28} />,
+    icon: FileCode2,
     skills: [
       "OOP",
       "DSA",
       "DBMS",
-      "Operating System",
+      "Operating Systems",
       "Computer Networks",
       "System Design",
     ],
   },
 ];
-
-const Skills = () => {
-  return (
-    <section
-      id="skills"
-      className="bg-slate-950 text-white py-20 px-6 scroll-mt-1"
-    >
-      <div className="max-w-7xl mx-auto">
-        {/* Heading */}
-        <div className="text-center mb-6">
-          <h2 className="text-5xl font-bold">
-            My <span className="text-cyan-400">Tech Stack</span>
-          </h2>
-
-          <p className="text-gray-400 mt-6 max-w-4xl mx-auto text-lg">
-            Technologies and tools I use to design, build, deploy and maintain
-            scalable Full Stack applications.
-          </p>
-        </div>
-
-        {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8">
-          {skillCategories.map((category) => (
-            <div
-              key={category.title}
-              className="group bg-slate-900 border border-slate-800 rounded-3xl p-7 hover:border-cyan-500 hover:-translate-y-3 hover:shadow-xl hover:shadow-cyan-500/10 transition-all duration-500 h-full"
-            >
-              {/* Icon */}
-              <div className="w-16 h-16 rounded-2xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-6 group-hover:bg-cyan-500 group-hover:text-white transition duration-300">
-                {category.icon}
-              </div>
-
-              {/* Title */}
-              <h3 className="text-2xl font-semibold mb-5">{category.title}</h3>
-
-              {/* Skills */}
-              <div className="flex flex-wrap gap-3">
-                {category.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-3 py-2 rounded-full bg-slate-800 border border-slate-700 text-sm text-gray-300 hover:bg-cyan-500 hover:border-cyan-500 hover:text-white transition duration-300"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+const Skills = () => (
+  <section
+    id="skills"
+    className="scroll-mt-24 bg-white px-5 py-20 sm:py-24 lg:px-8"
+  >
+    <div className="mx-auto max-w-7xl">
+      <div className="mx-auto mb-12 max-w-2xl text-center">
+        <p className="text-sm font-bold uppercase tracking-[0.22em] text-cyan-700">
+          What I work with
+        </p>
+        <h2 className="mt-3 text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">
+          My <span className="text-cyan-600">Tech Stack</span>
+        </h2>
+        <p className="mt-4 leading-7 text-slate-600">
+          Tools and technologies I use to design, build, test, and deploy
+          full-stack applications.
+        </p>
       </div>
-    </section>
-  );
-};
-
+      <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+        {skillCategories.map(({ title, icon: Icon, skills }) => (
+          <div
+            key={title}
+            className="rounded-3xl border border-slate-200 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-cyan-200 hover:shadow-xl hover:shadow-slate-900/5"
+          >
+            <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-50 text-cyan-700">
+              <Icon size={24} />
+            </div>
+            <h3 className="text-lg font-bold text-slate-900">{title}</h3>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {skills.map((skill) => (
+                <span
+                  key={skill}
+                  className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-medium text-slate-600 transition hover:border-cyan-200 hover:bg-cyan-50 hover:text-cyan-800"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
 export default Skills;

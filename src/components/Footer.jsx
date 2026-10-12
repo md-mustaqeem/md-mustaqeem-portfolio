@@ -1,108 +1,82 @@
-import {
-  FaGithub,
-  FaLinkedin,
-  FaEnvelope,
-  FaHeart,
-  FaArrowUp,
-} from "react-icons/fa";
-
-const Footer = () => {
-  const currentYear = new Date().getFullYear();
-
-  return (
-    <footer className="bg-slate-950 border-t border-slate-800 text-white">
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        {/* Top */}
-        <div className="flex flex-col lg:flex-row justify-between items-center gap-10">
-          {/* Left */}
-          <div>
-            <h2 className="text-3xl font-bold text-cyan-400">MD MUSTAQEEM</h2>
-
-            <p className="text-gray-400 mt-3 max-w-md">
-              Java Full Stack Developer passionate about building scalable,
-              secure, and user-friendly web applications using Java, Spring
-              Boot, React.js, and modern technologies.
-            </p>
-          </div>
-
-          {/* Social Icons */}
-          <div className="flex gap-5">
-            <a
-              href="https://github.com/md-mustaqeem"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-slate-800 p-3 rounded-full hover:bg-cyan-500 transition"
-            >
-              <FaGithub size={22} />
-            </a>
-
-            <a
-              href="//www.linkedin.com/in/md9661/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-slate-800 p-3 rounded-full hover:bg-cyan-500 transition"
-            >
-              <FaLinkedin size={22} />
-            </a>
-
-            <a
-              href="mailto:mdmustaqeem970@gmail.com"
-              className="bg-slate-800 p-3 rounded-full hover:bg-cyan-500 transition"
-            >
-              <FaEnvelope size={22} />
-            </a>
-          </div>
-        </div>
-
-        {/* Divider */}
-        <div className="border-t border-slate-800 my-10"></div>
-
-        {/* Bottom */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-gray-400 flex items-center gap-2 text-center">
-            © {currentYear} MD MUSTAQEEM. Made with
-            <FaHeart
-              size={18}
-              className="text-red-500"
-              style={{ fill: "currentColor" }}
-            />
-            using React, JavaScript & Tailwind CSS.
-          </p>
-
-          {/* Navigation */}
-          <div className="flex flex-wrap justify-center gap-6">
-            <a href="#home" className="hover:text-cyan-400 transition">
-              Home
-            </a>
-
-            <a href="#about" className="hover:text-cyan-400 transition">
-              About
-            </a>
-
-            <a href="#skills" className="hover:text-cyan-400 transition">
-              Skills
-            </a>
-
-            <a href="#projects" className="hover:text-cyan-400 transition">
-              Projects
-            </a>
-
-            <a href="#contact" className="hover:text-cyan-400 transition">
-              Contact
-            </a>
-          </div>
-
-          {/* Back To Top */}
+import { FaGithub, FaLinkedin, FaEnvelope, FaHeart } from "react-icons/fa";
+import { ArrowUpRight, ArrowUp } from "lucide-react";
+const Footer = () => (
+  <footer className="border-t border-slate-200 bg-slate-50 px-5 py-10 lg:px-8">
+    <div className="mx-auto max-w-7xl">
+      <div className="flex flex-col justify-between gap-8 sm:flex-row sm:items-center">
+        <div>
           <a
             href="#home"
-            className="bg-cyan-500 hover:bg-cyan-600 p-3 rounded-full transition"
+            className="text-2xl font-black tracking-tight text-slate-950"
           >
-            <FaArrowUp size={22} />
+            MD<span className="text-cyan-600">.</span> MUSTAQEEM
+          </a>
+          <p className="mt-2 max-w-md text-sm leading-6 text-slate-600">
+            Java Full Stack Developer building useful, secure, and user-friendly
+            web applications.
+          </p>
+        </div>
+        <div className="flex gap-3">
+          <a
+            aria-label="GitHub"
+            href="https://github.com/md-mustaqeem"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full border border-slate-200 bg-white p-3 text-slate-700 transition hover:border-cyan-500 hover:text-cyan-700"
+          >
+            <FaGithub size={19} />
+          </a>
+          <a
+            aria-label="LinkedIn"
+            href="https://www.linkedin.com/in/md9661/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full border border-slate-200 bg-white p-3 text-slate-700 transition hover:border-cyan-500 hover:text-cyan-700"
+          >
+            <FaLinkedin size={19} />
+          </a>
+          <a
+            aria-label="Email"
+            href="mailto:mdmustaqeem970@gmail.com"
+            className="rounded-full border border-slate-200 bg-white p-3 text-slate-700 transition hover:border-cyan-500 hover:text-cyan-700"
+          >
+            <FaEnvelope size={19} />
+          </a>
+          <a
+            aria-label="Back to top"
+            href="#home"
+            className="rounded-full bg-slate-900 p-3 text-white transition hover:bg-cyan-700"
+          >
+            <ArrowUp size={19} />
           </a>
         </div>
       </div>
-    </footer>
-  );
-};
-
+      <div className="mt-8 flex flex-col justify-between gap-4 border-t border-slate-200 pt-6 text-sm text-slate-500 md:flex-row md:items-center">
+        <p>© {new Date().getFullYear()} MD MUSTAQEEM. All rights reserved.</p>
+        <p className="flex items-center gap-1.5">
+          Made with <FaHeart className="text-rose-500" /> React & Tailwind CSS
+        </p>
+        <div className="flex flex-wrap gap-x-5 gap-y-2">
+          {["Home", "About", "Skills", "Projects", "Contact"].map((name) => (
+            <a
+              key={name}
+              href={`#${name.toLowerCase()}`}
+              className="transition hover:text-cyan-700"
+            >
+              {name}
+            </a>
+          ))}
+          <a
+            href="https://github.com/md-mustaqeem?tab=repositories"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 transition hover:text-cyan-700"
+          >
+            GitHub <ArrowUpRight size={13} />
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+);
 export default Footer;

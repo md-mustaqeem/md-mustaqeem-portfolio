@@ -1,132 +1,106 @@
-import {
-  Code2,
-  Database,
-  Server,
-  MonitorSmartphone,
-  Sparkles,
-} from "lucide-react";
+import { Code2, Database, Server, Cloud, ArrowUpRight } from "lucide-react";
 
 const highlights = [
   {
-    icon: <Code2 size={30} />,
+    icon: Code2,
     title: "Frontend",
-    desc: "React.js, JavaScript, HTML5, CSS3, Tailwind CSS, Bootstrap",
+    desc: "React.js, JavaScript, HTML5, CSS3, Tailwind CSS",
   },
   {
-    icon: <Server size={30} />,
+    icon: Server,
     title: "Backend",
-    desc: "Java, Spring Boot, Spring Security, REST APIs, Hibernate",
+    desc: "Java, Spring Boot, Spring Security, REST APIs",
   },
   {
-    icon: <Database size={30} />,
-    title: "Database",
-    desc: "MySQL, PostgreSQL, MongoDB",
+    icon: Database,
+    title: "Databases",
+    desc: "MySQL, PostgreSQL, MongoDB, Redis",
   },
   {
-    icon: <MonitorSmartphone size={30} />,
+    icon: Cloud,
     title: "Cloud & Tools",
-    desc: "Git, GitHub, Docker, AWS, Postman",
+    desc: "AWS, Docker, Git, GitHub, Postman",
   },
 ];
-
 const stats = [
-  {
-    value: "6+",
-    label: "Projects",
-  },
-  {
-    value: "6",
-    label: "Months Internship",
-  },
-  {
-    value: "8.35",
-    label: "CGPA",
-  },
+  { value: "6+", label: "Projects" },
+  { value: "6 mo.", label: "Internship" },
+  { value: "8.35", label: "B.Tech CGPA" },
 ];
 
-const About = () => {
-  return (
-    <section
-      id="about"
-      className="bg-slate-950 text-white py-20 px-6 scroll-mt-1"
-    >
-      <div className="max-w-7xl mx-auto">
-        {/* Heading */}
-
-        <div className="text-center mb-10">
-          <h2 className="text-5xl font-bold">
-            Passionate Full Stack
-            <span className="text-cyan-400"> Developer</span>
-          </h2>
-
-          <p className="text-gray-400 mt-6 max-w-3xl mx-auto text-lg">
-            I build scalable, secure and modern web applications using Java,
-            Spring Boot, React and cloud technologies while focusing on
-            performance and user experience.
+const About = () => (
+  <section
+    id="about"
+    className="scroll-mt-24 bg-slate-50 px-5 py-20 sm:py-24 lg:px-8"
+  >
+    <div className="mx-auto max-w-7xl">
+      <div className="mb-12 max-w-3xl">
+        <p className="text-sm font-bold uppercase tracking-[0.22em] text-cyan-700">
+          A little about me
+        </p>
+        <h2 className="mt-3 text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">
+          Building useful things,{" "}
+          <span className="text-cyan-600">one line at a time.</span>
+        </h2>
+        <p className="mt-5 text-lg leading-8 text-slate-600">
+          A software developer focused on building thoughtful digital products
+          with clean interfaces and dependable backend systems.
+        </p>
+      </div>
+      <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+        <div>
+          <h3 className="text-2xl font-bold text-slate-900">
+            Java Full Stack Developer
+          </h3>
+          <p className="mt-4 leading-8 text-slate-600">
+            I'm a Computer Science graduate with hands-on training and project
+            experience in Java Full Stack Development. I enjoy creating secure
+            REST APIs, responsive React applications, authentication flows, and
+            database-backed services.
           </p>
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-6 items-center">
-          {/* Left */}
-
-          <div>
-            <h3 className="text-3xl font-bold mb-2">
-              Java Full Stack Developer
-            </h3>
-
-            <p className="text-gray-300 leading-8 mb-6">
-              I'm a Computer Science undergraduate with internship experience in
-              Java Full Stack Development. I enjoy building secure REST APIs,
-              responsive React applications, authentication systems and scalable
-              backend services.
-            </p>
-
-            <p className="text-gray-400 leading-8">
-              Currently improving my skills in System Design, Microservices,
-              Cloud Computing, DevOps and Data Structures to build enterprise
-              applications.
-            </p>
-
-            {/* Stats */}
-
-            <div className="grid grid-cols-3 gap-6 mt-45 ">
-              {stats.map((item) => (
-                <div
-                  key={item.label}
-                  className="bg-slate-900 border border-slate-800 rounded-2xl p-6 text-center hover:border-cyan-500 hover:-translate-y-2 transition duration-300"
-                >
-                  <h3 className="text-4xl font-bold text-cyan-400">
-                    {item.value}
-                  </h3>
-
-                  <p className="text-gray-400 mt-2">{item.label}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right */}
-
-          <div className="grid sm:grid-cols-2 gap-6">
-            {highlights.map((item) => (
+          <p className="mt-4 leading-8 text-slate-600">
+            I'm continuing to strengthen my skills in system design,
+            microservices, cloud computing, DevOps, and data structures while
+            building applications that solve real problems.
+          </p>
+          <div className="mt-8 grid grid-cols-3 gap-3">
+            {stats.map((item) => (
               <div
-                key={item.title}
-                className="group bg-slate-900 border border-slate-800 rounded-3xl p-8 hover:border-cyan-500 hover:-translate-y-3 hover:shadow-xl hover:shadow-cyan-500/10 transition-all duration-500"
+                key={item.label}
+                className="rounded-2xl border border-slate-200 bg-white p-4 sm:p-5"
               >
-                <div className="w-16 h-16 rounded-2xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-6 group-hover:bg-cyan-500 group-hover:text-white transition">
-                  {item.icon}
-                </div>
-
-                <h4 className="text-2xl font-semibold mb-3">{item.title}</h4>
-
-                <p className="text-gray-400 leading-7">{item.desc}</p>
+                <p className="text-2xl font-black text-cyan-700 sm:text-3xl">
+                  {item.value}
+                </p>
+                <p className="mt-2 text-xs font-medium text-slate-500 sm:text-sm">
+                  {item.label}
+                </p>
               </div>
             ))}
           </div>
+          <a
+            href="#experience"
+            className="mt-7 inline-flex items-center gap-2 font-semibold text-cyan-700 hover:text-cyan-900"
+          >
+            Explore my experience <ArrowUpRight size={17} />
+          </a>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2">
+          {highlights.map(({ icon: Icon, title, desc }) => (
+            <div
+              key={title}
+              className="group rounded-3xl border border-slate-200 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-cyan-200 hover:shadow-xl hover:shadow-slate-900/5"
+            >
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-50 text-cyan-700 transition group-hover:bg-cyan-600 group-hover:text-white">
+                <Icon size={24} />
+              </div>
+              <h4 className="text-xl font-bold text-slate-900">{title}</h4>
+              <p className="mt-3 leading-7 text-slate-600">{desc}</p>
+            </div>
+          ))}
         </div>
       </div>
-    </section>
-  );
-};
-
+    </div>
+  </section>
+);
 export default About;

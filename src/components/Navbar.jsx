@@ -1,131 +1,102 @@
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
+
+const navLinks = [
+  { name: "Home", href: "#home" },
+  { name: "About", href: "#about" },
+  { name: "Skills", href: "#skills" },
+  { name: "Experience", href: "#experience" },
+  { name: "Projects", href: "#projects" },
+  { name: "Education", href: "#education" },
+  { name: "Contact", href: "#contact" },
+];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [active, setActive] = useState("home");
 
-  const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Experience", href: "#experience" },
-    { name: "Projects", href: "#projects" },
-    { name: "Education", href: "#education" },
-    { name: "Contact", href: "#contact" },
-  ];
-
   useEffect(() => {
-    const sections = document.querySelectorAll("section");
-
+    const sections = navLinks
+      .map(({ href }) => document.querySelector(href))
+      .filter(Boolean);
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActive(entry.target.id);
-          }
+          if (entry.isIntersecting) setActive(entry.target.id);
         });
       },
-      {
-        threshold: 0.4,
-      },
+      { rootMargin: "-35% 0px -55% 0px" },
     );
-
     sections.forEach((section) => observer.observe(section));
-
-    return () => sections.forEach((section) => observer.unobserve(section));
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-slate-900/90 backdrop-blur-md shadow-lg z-50">
-      <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 py-2">
-        {/* Logo */}
-        <a href="#home" className="text-2xl font-bold text-cyan-400">
-          Md Mustaqeem
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur-xl">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+        <a
+          href="#home"
+          onClick={() => setIsOpen(false)}
+          className="text-xl font-extrabold tracking-tight text-slate-900"
+        >
+          MD<span className="text-cyan-600">.</span> MUSTAQEEM
         </a>
-
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex gap-8 font-medium">
+        <div className="hidden items-center gap-7 md:flex">
           {navLinks.map((item) => {
-            const id = item.href.replace("#", "");
-
+            const id = item.href.slice(1);
             return (
-              <li key={item.name}>
-                <a
-                  href={item.href}
-                  onClick={() => setActive(id)}
-                  className={`relative transition duration-300 ${
-                    active === id
-                      ? "text-cyan-400"
-                      : "text-gray-300 hover:text-cyan-400"
-                  }`}
-                >
-                  {item.name}
-
-                  {active === id && (
-                    <span className="absolute left-0 -bottom-2 h-[2px] w-full bg-cyan-400 rounded-full"></span>
-                  )}
-                </a>
-              </li>
+              <a
+                key={item.name}
+                href={item.href}
+                onClick={() => setActive(id)}
+                className={`text-sm font-medium transition ${active === id ? "text-cyan-700" : "text-slate-600 hover:text-slate-950"}`}
+              >
+                {item.name}
+              </a>
             );
           })}
-        </ul>
-
-        {/* Resume Button */}
+        </div>
         <a
           href="/resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden md:block bg-cyan-500 hover:bg-cyan-600 text-white px-5 py-2 rounded-lg transition"
+          className="hidden items-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-cyan-700 md:flex"
         >
-          Resume
+          Resume <ArrowUpRight size={16} />
         </a>
-
-        {/* Mobile Button */}
         <button
+          aria-label="Toggle navigation"
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-white"
+          className="rounded-xl border border-slate-200 p-2 text-slate-800 md:hidden"
         >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
+          {isOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </nav>
-
-      {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-slate-900 px-6 pb-6">
-          <ul className="space-y-4">
-            {navLinks.map((item) => {
-              const id = item.href.replace("#", "");
-
-              return (
-                <li key={item.name}>
-                  <a
-                    href={item.href}
-                    onClick={() => {
-                      setActive(id);
-                      setIsOpen(false);
-                    }}
-                    className={`block transition ${
-                      active === id
-                        ? "text-cyan-400 font-semibold"
-                        : "text-gray-300 hover:text-cyan-400"
-                    }`}
-                  >
-                    {item.name}
-                  </a>
-                </li>
-              );
-            })}
-
+        <div className="border-t border-slate-100 bg-white px-5 py-5 shadow-xl md:hidden">
+          <div className="mx-auto flex max-w-7xl flex-col gap-1">
+            {navLinks.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                onClick={() => {
+                  setActive(item.href.slice(1));
+                  setIsOpen(false);
+                }}
+                className={`rounded-xl px-4 py-3 text-sm font-medium ${active === item.href.slice(1) ? "bg-cyan-50 text-cyan-700" : "text-slate-600 hover:bg-slate-50"}`}
+              >
+                {item.name}
+              </a>
+            ))}
             <a
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="block bg-cyan-500 text-center text-white py-2 rounded-lg mt-4"
+              className="mt-2 rounded-xl bg-slate-900 px-4 py-3 text-center text-sm font-semibold text-white"
             >
-              Download Resume
+              View Resume
             </a>
-          </ul>
+          </div>
         </div>
       )}
     </header>

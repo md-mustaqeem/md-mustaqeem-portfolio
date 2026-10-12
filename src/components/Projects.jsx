@@ -1,54 +1,40 @@
+import { ArrowUpRight } from "lucide-react";
 import ProjectCard from "./ProjectCard";
 import projects from "../data/projects";
-
-const Projects = () => {
-  return (
-    <section
-      id="projects"
-      className="bg-slate-950 text-white py-10 px-6 scroll-mt-10"
-    >
-      <div className="max-w-7xl mx-auto">
-        {/* Heading */}
-        <div className="text-center mb-6">
-          <h2 className="text-5xl font-bold">
-            Featured <span className="text-cyan-400">Projects</span>
+const Projects = () => (
+  <section
+    id="projects"
+    className="scroll-mt-24 bg-slate-50 px-5 py-20 sm:py-24 lg:px-8"
+  >
+    <div className="mx-auto max-w-7xl">
+      <div className="mb-12 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+        <div>
+          <p className="text-sm font-bold uppercase tracking-[0.22em] text-cyan-700">
+            Selected work
+          </p>
+          <h2 className="mt-3 text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">
+            Featured <span className="text-cyan-600">Projects</span>
           </h2>
-
-          <p className="text-gray-400 mt-2">
-            Full Stack & AI-powered applications built using React, Spring Boot,
-            MySQL, PostgreSQL, and AI APIs.
+          <p className="mt-4 max-w-2xl leading-7 text-slate-600">
+            A selection of full-stack and AI-powered applications built to solve
+            practical problems.
           </p>
         </div>
-
-        <div className="relative">
-          {/* Vertical Line */}
-          <div className="absolute left-7 top-0 bottom-0 w-1 bg-cyan-500 rounded-full"></div>
-
-          {projects.map((project, index) => (
-            <div
-              key={project.id}
-              className="relative flex items-start gap-6 mb-6"
-            >
-              {/* Number */}
-              <div className="relative z-10">
-                <div className="w-14 h-14 rounded-full bg-cyan-500 text-white font-bold text-xl flex items-center justify-center shadow-lg shadow-cyan-500/30">
-                  {index + 1}
-                </div>
-              </div>
-
-              {/* Horizontal Line */}
-              <div className="w-16 h-1 bg-cyan-500 mt-7"></div>
-
-              {/* Card */}
-              <div className="flex-1">
-                <ProjectCard project={project} />
-              </div>
-            </div>
-          ))}
-        </div>
+        <a
+          href="https://github.com/md-mustaqeem?tab=repositories"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex w-fit items-center gap-2 font-semibold text-slate-800 transition hover:text-cyan-700"
+        >
+          All repositories <ArrowUpRight size={17} />
+        </a>
       </div>
-    </section>
-  );
-};
-
+      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {projects.map((project) => (
+          <ProjectCard key={project.id} project={project} />
+        ))}
+      </div>
+    </div>
+  </section>
+);
 export default Projects;
